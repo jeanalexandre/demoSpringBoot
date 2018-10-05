@@ -1,0 +1,12 @@
+language: java
+jdk: oraclejdk8
+
+services:
+- mysql
+
+before_install:
+- mysql -e 'CREATE DATABASE demo;'
+- mysql -e 'CREATE DATABASE IF NOT EXISTS demo;'
+
+notifications:
+  slack: masteriii2018:xsHaO4CZ3aUs5Z6oDfAEbWye
