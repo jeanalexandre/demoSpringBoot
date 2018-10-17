@@ -1,12 +1,14 @@
 language: java
 jdk: oraclejdk8
-
 services:
-- mysql
-
+- postgresql
 before_install:
-- mysql -e 'CREATE DATABASE demo;'
-- mysql -e 'CREATE DATABASE IF NOT EXISTS demo;'
-
+- psql -c "CREATE DATABASE demo;" -U postgres
+- psql -c "CREATE USER demo WITH PASSWORD 'demo';" -U postgres
 notifications:
   slack: masteriii2018:xsHaO4CZ3aUs5Z6oDfAEbWye
+deploy:
+  provider: heroku
+  api_key:
+    secure: Majcddt4e6vczfE+v2SH0MnnH8qWhkeV8xDfS6hy5EhxF2g1hOJUl6PmtQrlfmXJkVfeBddOmibVxKXmBqaOzqzANXFcFIkB5FQ48amRfk4cSVuQCjTWOL1gvY/kjJH+DWNHvUPqLXvgu9vUCwF4w/WUmI4m/WwpwxX0Oy4j2cSeF9yOXvGIXPJ+NjNOsEYksWpepeo+R7DY0qPn9MJCPN3uvDLAQVw7R7jv6YHZR7efi7CsxpnOY0DLTZgkTs9jSMrY6v+Bhz2l5f3j1ybRBsTnV2dBZjNpnbmaKXV/pFhmBlo8YUTvdGXaR+Hd18HdnfKn3f1HLtdoUdYVhOFLZJpxJ9tEQ6iN5X9RQtbiiTOa3KzqQCQvptVYOtmJZVbcBcnzx1pietADpyfHhgfKvMjStif4bREt48RKnNKeQ4b+DYUqiEIywm1Z6YJdVSc0d1S+1BnXxeB8S7tfl0IJYF/rHCKMEj/RAmaEUAc5hXyMyLTw1cANB//iRw/HRA9lcm6B/kVF39/r5BrfbIyckKU1oRdMX9HaXoAfNupQImPjkV30cVmu2SYTwrvz9jrr9pnZ45Tyb56zoGAFJpUdimwX6ErQ6afFUx+wsE1S9UTBgMMG0kSZ+x7OYJBL9HHYIQ8jTKYT49qi6+mk1oHViLOpuGs3X1bZS6JWoN1YQac=
+  app: demospringboot-jannou
