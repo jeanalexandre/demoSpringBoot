@@ -41,4 +41,5 @@ public class Ask {
     public void setChoices(List<Choice> choices) {
         this.choices = choices;
     }
+    
 }

@@ -2,7 +2,6 @@
 spring:
   datasource:
     url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/demo}
-#    url: ${JDBC_DATABASE_URL:jdbc:mysql://localhost:8889/demo}
     username: demo
     password: demo
     driver-class-name: org.postgresql.Driver
@@ -15,5 +14,10 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: secret
 
 
