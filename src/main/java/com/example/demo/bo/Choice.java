@@ -1,9 +1,6 @@
 package com.example.demo.bo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "choice")
@@ -11,7 +8,8 @@ public class Choice {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(name = "value")
     private String value;
@@ -19,11 +17,11 @@ public class Choice {
     @Column(name = "rank")
     private int rank;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

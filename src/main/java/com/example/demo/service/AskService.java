@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AskService {
@@ -20,13 +21,22 @@ public class AskService {
      * @return all answers
      */
     public List<Ask> getAll() {
-//        List<Ask> asks = new ArrayList<>();
-//        askRepository.findAll().forEach(a -> asks.add(a));
-//        return asks;
-
         return this.askRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return ask match with id in param
+     */
+    public Optional<Ask> getById(long id) {
+        return this.askRepository.findById(id);
+    }
+
+    /**
+     * create new ask
+     * @param ask
+     */
     public void post(Ask ask) {
         askRepository.save(ask);
     }

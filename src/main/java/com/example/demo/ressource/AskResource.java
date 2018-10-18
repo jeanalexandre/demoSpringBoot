@@ -2,8 +2,9 @@ package com.example.demo.ressource;
 
 import com.example.demo.bo.Ask;
 import com.example.demo.service.AskService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,14 +18,22 @@ public class AskResource {
         this.askService = askService;
     }
 
-    @RequestMapping
+    @RequestMapping(method = RequestMethod.GET)
     public List<Ask> get() {
         return askService.getAll();
     }
 
-//    @PostMapping
-//    public void post(@RequestParam String value) {
-//        Ask answer = new Ask();
-//        askService.post(answer);
-//    }
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Ask> getById(@PathVariable("id") long id) {
+        return askService.getById(id)
+                .map(response -> ResponseEntity.ok().body(response))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void post(@RequestParam String entitled) {
+        Ask answer = new Ask();
+        answer.setEntitled(entitled);
+        askService.post(answer);
+    }
 }
